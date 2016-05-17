@@ -1,30 +1,22 @@
 
-
-var digits = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+function showNumbersName(p) {
+  
+    var digits = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  
+var numbers =['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];  
 
 var tens = [ '', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
 var hundred = 'hundred';
-
-
-
-
-
-
-function showNumbersName(p) {
+var thousand = 'thousand';
   
-    var stringed = p.toString();
-    var reversed = stringed.split('').reverse().join('');
-    var numbered = parseFloat(reversed);
-    
+var stringed = p.toString();
+var reversed = stringed.split('').reverse().join('');
+
 
   var indexZero = function(p){
     for (var i=0; i<reversed.length; i++) {
-      if (p<0 || p>1000){
-      return 'Please enter correct number.';
-    } else if (p>=20 && reversed[3] === '1') {
-      return thousand;
-    } else if (reversed[0] === '0') {
+      if (reversed[0] === '0') {
       return digits[0];
     } else if (reversed[0] === '1' ) {
       return digits[1];
@@ -51,7 +43,7 @@ function showNumbersName(p) {
   var indexOne = function(p) {
     for (var i=0; i<reversed.length; i++) {
       if (reversed[1] === '0' ) {
-      return 'end';
+      return '';
     } else if (reversed[1] === '1' ) {
       return 'correct this error';
     } else if (reversed[1] === '2' ) {
@@ -77,7 +69,7 @@ function showNumbersName(p) {
   var indexTwo = function(p) {
     for (var i=0; i<reversed.length; i++) {
       if (reversed[2] === '0' ) {
-      return '';
+      return digits[0];
     } else if (reversed[2] === '1' ) {
       return digits[1]+' '+hundred;
     } else if (reversed[2] === '2' ) {
@@ -99,9 +91,25 @@ function showNumbersName(p) {
     }
     }
   }();
+  
+  var giveValue = function() {
+    if (p>-1 && p<10) {
+      return indexZero;
+    } else if (p>9 && p<100) {
+      return (indexOne + '-'+indexZero);
+    } else if (p>100 && p<1000) {
+      return (indexTwo + ' and '+indexOne+'-'+indexZero);
+    } else if(p<0 || p>1000) {
+      return ('Please enter correct number.');
+    } else if (p>=20 && reversed[3] === '1') {
+      return thousand;
+    } else if (p===100){
+      return ('one ' + hundred);
+    }
+  }();
     
-  console.log(indexTwo + ' '+indexOne+' '+indexZero);
+  console.log(giveValue);
 }
 
-showNumbersName(132);
+showNumbersName(113);
 
