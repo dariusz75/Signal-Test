@@ -1,7 +1,7 @@
 
 function showNumbersName(p) {
   
-    var digits = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+var digits = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
   
 var numbers =['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];  
 
@@ -45,7 +45,7 @@ var reversed = stringed.split('').reverse().join('');
       if (reversed[1] === '0' ) {
       return '';
     } else if (reversed[1] === '1' ) {
-      return 'correct this error';
+      return 'This error needs to be fixed.';
     } else if (reversed[1] === '2' ) {
       return tens[2];
     } else if (reversed[1] === '3' ) {
@@ -108,8 +108,9 @@ var reversed = stringed.split('').reverse().join('');
     }
   }();
     
-  console.log(giveValue);
+  return giveValue;
 }
 
 showNumbersName(113);
 
+window.showNumbersName = showNumbersName;
